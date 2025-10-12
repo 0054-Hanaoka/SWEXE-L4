@@ -1,4 +1,4 @@
-<h2>ログイン成功！</h2>
-<p><%= session[:login_uid] %> さん、ようこそ。</p>
+<h2>ログイン中です</h2>
+<p>ユーザーID: <%= session[:login_uid] %></p>
+<%= button_to "ログアウト", top_logout_path, method: :delete %>
 
-<%= link_to 'ログアウト', '/top/logout' %>
