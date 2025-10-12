@@ -9,11 +9,15 @@ class TopController < ApplicationController
     end
     
     def login
-        if params[:uid] == "kindai" and params[:pass] == "sanriko"
-            session[:login_uid] = params[:uid]
-            redirect_to top_main_path
+    # 1. 入力されたuidでユーザーを検索
+        user = User.find_by(uid: params[:uid])
+    
+        # 2. 見つかった場合はBCryptでパスワード照合
+        if user && BCrypt::Password.new(user.pass) == params[:pass]
+          session[:login_uid] = user.uid
+          redirect_to top_main_path
         else
-            render "error",status: 422
+          render "error", status: 422
         end
     end
     

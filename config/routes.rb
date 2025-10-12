@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   get 'top/main'
   post 'top/login'
+  get 'top/logout', to: 'top#logout'
   root 'top#main'
-  get  'top/logout'
 end
